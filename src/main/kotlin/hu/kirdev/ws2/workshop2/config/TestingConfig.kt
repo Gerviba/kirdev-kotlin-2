@@ -1,7 +1,10 @@
 package hu.kirdev.ws2.workshop2.config
 
 import hu.kirdev.ws2.workshop2.model.MovieEntity
+import hu.kirdev.ws2.workshop2.service.MovieService
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Configuration
+import org.springframework.context.annotation.Profile
 import java.io.File
 import java.nio.file.Files
 import javax.annotation.PostConstruct
@@ -9,11 +12,17 @@ import javax.annotation.PostConstruct
 const val URL_BASE = "https://image.tmdb.org/t/p/w185_and_h278_bestv2"
 const val DEFAULT_IMAGE = "https://www.listchallenges.com/f/lists/63879069-2c06-4430-9345-4325152efd73.jpg"
 
+@Profile("mysql")
 @Configuration
 class TestingConfig {
 
+    @Autowired
+    lateinit var movies: MovieService
+
     @PostConstruct
     fun init() {
+        println("Starting")
+
         Files.readAllLines(File("data/movies_metadata_all.csv").toPath())
                 .asSequence()
                 .drop(1)
@@ -29,10 +38,9 @@ class TestingConfig {
                         description = data[9],
                         posterUrl = if (data[11].isEmpty()) DEFAULT_IMAGE else "${URL_BASE}${data[11]}",
                         runtime = if (data[16].isEmpty()) 0 else data[16].toDouble().toInt()
-
                 )}}
                 .filter { it != null }
-                .forEach { println(it) }
+                .forEach { movies.addMovie(it!!) }
     }
 
     private fun ignoreErrors(data: List<String>, fx: Function1<List<String>, MovieEntity?>): MovieEntity? {

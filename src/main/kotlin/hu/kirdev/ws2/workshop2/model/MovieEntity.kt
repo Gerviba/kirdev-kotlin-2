@@ -6,7 +6,7 @@ import javax.persistence.*
 @Table(name = "movie")
 data class MovieEntity(
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
 
     @Column
