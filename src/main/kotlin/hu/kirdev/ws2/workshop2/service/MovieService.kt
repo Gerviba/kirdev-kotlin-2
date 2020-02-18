@@ -22,4 +22,8 @@ class MovieService {
         return movies.findAll().toList()
     }
 
+    fun getMostPopularMovies(): List<MovieEntity> {
+        return movies.getAllByAdultFalseOrderByPopularityDesc()
+    }
+
 }

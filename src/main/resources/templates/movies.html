@@ -8,6 +8,14 @@
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,700&display=swap&subset=latin-ext" rel="stylesheet">
     <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        h4,h5 { color: #FFFFFF }
+        .movie {
+            margin-bottom: 20px;
+            border: 2px solid #ACACAC;
+        }
+    </style>
+
 </head>
 <body>
 
@@ -23,17 +31,20 @@
 
 <div class="wrapper subjects">
     <h1>FILM KERESÉSE</h1>
+    <h1 th:text="${time}">idő</h1>
     <div class="search">
         <input type="text" id="search" name="search"/>
     </div>
 
     <div id="ins">
 
-        <div class="movie">
-            <div class="poster"></div>
+        <div class="movie" th:each="movie : ${movies}" th:object="${movie}" th:style="|background-image: url(${movie.posterUrl})|">
+            <div class="poster">
+                <img th:src="*{posterUrl}" />
+            </div>
             <div class="desc">
-                <h4>TITLE</h4>
-                <h5>SUBTITLE</h5>
+                <h4 th:text="*{title}">TITLE</h4>
+                <h5 th:text="*{tagline}">SUBTITLE</h5>
                 <a href="#" class="button">Megnyitás</a>
             </div>
         </div>

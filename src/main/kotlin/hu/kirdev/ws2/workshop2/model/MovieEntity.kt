@@ -1,5 +1,6 @@
 package hu.kirdev.ws2.workshop2.model
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import javax.persistence.*
 
 @Entity
