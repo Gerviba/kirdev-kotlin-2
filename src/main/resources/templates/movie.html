@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring MVC Demo - Kir-Dev Workshop</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,700&display=swap&subset=latin-ext" rel="stylesheet">
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+
+<div class="top-bar">
+    <div class="wrapper">
+        <h2><span>Film</span> adatbázis</h2>
+
+        <div class="nav-bar">
+            <a href="movies.html" th:href="@{/movies}">Összes</a>
+        </div>
+    </div>
+</div>
+
+<div class="wrapper">
+    <div class="card" th:object="${}">
+        <h1>Film címe</h1>
+        <h2>Alcím</h2>
+
+        <img src="" alt="Poszter" height="278" width="185" />
+
+        <h3>Adatai</h3>
+        <div class="properties">
+
+            <div class="property">
+                <div class="icon"><i class="material-icons" style="color:#F15A2A">emoji_events</i></div>
+                <div class="key">Tulajdonság</div>
+                <div class="value">4</div>
+            </div>
+
+        </div>
+
+        <h3>Leírás</h3>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dictum, mi vitae viverra commodo,
+            mauris neque auctor tortor, nec blandit neque purus sit amet libero. Aliquam nec cursus turpis. Phasellus
+            porta condimentum metus quis ultrices. Phasellus et orci sit amet sem scelerisque vehicula ac vel nunc.
+            Proin elementum nunc ut lorem facilisis aliquam. Ut pulvinar ex in volutpat rutrum. Aenean dictum hendrerit
+            nulla, nec maximus enim dignissim sit amet. Proin consectetur ex et orci imperdiet, non luctus ex aliquam.
+            Nam ac tempor metus, eu bibendum ipsum. Morbi vestibulum ante quis tincidunt ultricies.
+        </p>
+
+    </div>
+
+    <div class="empty-footer"></div>
+</div>
+
+</body>
+</html>
